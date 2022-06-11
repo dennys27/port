@@ -162,22 +162,70 @@
   });
 })(jQuery);
 
-function validateForm() {
+var flag=0;
+
+function validateForm(e) {
   let name = document.forms["myform"]["fname"].value;
   if (name == "") {
-    alert("Name must be filled out");
-    return false;
+    document.getElementById("error").innerHTML = "invalid entry";
+    flag=1
+    event.preventDefault();
+
+    name = document.forms["myform"]["fname"].value = "";
   }
 
   let message = document.forms["myform"]["message"].value;
 
   if (message == "") {
-    alert("enter a message");
+
+    document.getElementById("m-error").innerHTML = "invalid entry";
+    flag = 1;
+    event.preventDefault();
+
+    message = document.forms["myform"]["message"].value = "";
   }
 
   let email = document.forms["myform"]["email"].value;
   let regx = /^([a-zA-Z)0-9\.-]+)@([a-zA-Z0-9-]+).([a-z]{2,20})()$/;
   if (regx.test(email) !== true) {
-    alert("invalid email id");
+    document.getElementById("e-error").innerHTML="invalid entry";
+    flag=1;
+    event.preventDefault();
+
+    email = document.forms["myform"]["email"].value = "";
+    
   }
+
+
+
 }
+
+
+ 
+$("#submit-form").submit((e) => {
+  
+    
+    e.preventDefault();
+
+  if (flag === 0) {
+    $.ajax({
+      url: "https://script.google.com/macros/s/AKfycbyhTIYCIiS1m-r4K6BE8kM-mXwWCuXfqYavSMH1hHfj7GJqv0f8wtK_salZfNeZ28oVsw/exec",
+      data: $("#submit-form").serialize(),
+      method: "post",
+      success: function (response) {
+        alert("Form submitted successfully");
+        window.location.reload();
+        //window.location.href="https://google.com"
+      },
+      error: function (err) {
+        alert("Something Error");
+      },
+    }
+    
+    );
+  }else{
+    flag = 0;
+  }
+
+  });
+

@@ -29,6 +29,13 @@
 
     <!-- Main Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
   </head>
   <body>
     <header class="navigation fixed-top">
@@ -155,7 +162,7 @@
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
             <p class="font-secondary paragraph-lg text-dark">
-              I'm a front-end developer as well as graphic designer. I enjoy
+                I'm a front-end developer as well as graphic designer. I enjoy
               creating things that live on the internet. My interest in web
               development started back in 2019.
             </p>
@@ -485,21 +492,24 @@
           <div class="col-lg-8 mx-auto">
             <div class="bg-white rounded text-center p-5 shadow-down">
               <h4 class="mb-80">Contact Form</h4>
-              <form
+              <form id="submit-form"
                 name="myform"
-                action="#"
+                method="POST"
+                 action=""
                 class="row"
-                onsubmit="return validateForm()"
+                onsubmit="return validateForm();"
               >
+              
                 <div class="col-md-6">
                   <input
                     type="text"
-                    id="name"
+                    id="fname"
                     name="fname"
                     placeholder="Full Name"
                     class="form-control px-0 mb-4"
                     
                   />
+                  <small style="color: red;" id="error"></small>
                 </div>
                 <div class="col-md-6">
                   <input
@@ -510,6 +520,7 @@
                     class="form-control px-0 mb-4"
                    
                   />
+                    <small style="color: red;" id="e-error"></small>
                 </div>
                 <div class="col-12">
                   <textarea
@@ -518,10 +529,14 @@
                     class="form-control px-0 mb-4"
                     placeholder="Type Message Here"
                    
-                  ></textarea>
+                  >
+                  
+                </textarea>
+                   <small style="color: red;" id="m-error"></small>
+                
                 </div>
                 <div class="col-lg-6 col-10 mx-auto">
-                  <button class="btn btn-primary w-100">send</button>
+                  <button   class="btn btn-primary w-100">send</button>
                 </div>
               </form>
             </div>
